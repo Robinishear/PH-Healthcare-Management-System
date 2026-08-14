@@ -89,6 +89,7 @@ const EditDoctorFormModal = ({
   const router = useRouter()
 
   const { mutateAsync, isPending } = useMutation({
+
     mutationFn: ({ doctorId, payload }: { doctorId: string; payload: IUpdateDoctorPayload }) =>
       updateDoctorAction(doctorId, payload),
   })
