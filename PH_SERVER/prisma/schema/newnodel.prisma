@@ -1,0 +1,5 @@
+model NewModel {
+    id        String   @id @default(uuid())
+    name      String
+    createdAt DateTime @default(now())
+}
