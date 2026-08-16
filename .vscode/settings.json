@@ -2,7 +2,10 @@
   "prisma-smart-formatter.typescript.defaultFormatter": "esbenp.prettier-vscode",
   "prisma-smart-formatter.typescriptreact.defaultFormatter": "esbenp.prettier-vscode",
   "cSpell.words": [
+    "apikey",
     "MBBS",
+    "nemotron",
+    "OPENROUTE",
     "unrs",
     "vercel"
   ]
