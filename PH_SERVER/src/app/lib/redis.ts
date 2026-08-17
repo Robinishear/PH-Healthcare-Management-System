@@ -75,7 +75,7 @@ class RedisService {
         }
     }
 
-    //  Method to set a key-value pair in Redis with optional TTL
+    //  Method to get a value by key from Redis
     async set(
         key: string,
         value: any,
@@ -93,7 +93,43 @@ class RedisService {
         }
     }
 
+    //  Method to update a key in Redis with optional TTL
+    async update(
+        key: string,
+        value: any,
+        ttlInSeconds: number
+    ): Promise<void> {
+        await this.set(key, value, ttlInSeconds);
+    }
 
+    //* Method to delete a key from Redis
+    async delete(key: string): Promise<void> {
+        try {
+            const client = this.ensureConnection();
+            await client.del(key);
+        } catch (error) {
+            console.log("Redis DELETE error: ", error);
+        }
+    }
+
+    //  Method to check if Redis is available
+    async isAvailable(): Promise<boolean> {
+        try {
+            const client = this.ensureConnection();
+            await client.ping();
+            return true;
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
+    }
+    //  Method to disconnect Redis
+    async disconnect(): Promise<void> {
+        if (this.client && this.isConnected) {
+            await this.client.quit();
+            this.isConnected = false;
+        }
+    }
 }
 
 export const redisService = new RedisService();
